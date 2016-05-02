@@ -11,12 +11,12 @@ This library makes using the APIs at [WrapAPI](https://wrapapi.com) easier by au
 
 ## Basic usage
 To initialize the client, create an instance with your [API key](https://wrapapi.com/#/user).
-```
+```javascript
 var wrapapi = require('wrapapi');
 var client = new wrapapi.Client('Your API key goes here');
 ```
 Once initialized, it's easy to send simple requests.
-```
+```javascript
 client.call('phsource', 'hackernews', 'login', '1.0.0', {
   acct: 'username',
   pw: 'password'
@@ -28,7 +28,7 @@ client.call('phsource', 'hackernews', 'login', '1.0.0', {
 }).catch(function(e) { ... }).
 ```
 You can also create a session so that state tokens returned by WrapAPI are automatically used for subsequent requests:
-```
+```javascript
 var session = client.Session();
 session.call('phsource', 'hackernews', 'login', '1.0.0', {
   acct: 'username',
