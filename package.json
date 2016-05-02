@@ -1,0 +1,24 @@
+{
+  "name": "wrapapi",
+  "version": "0.0.1",
+  "description": "Official SDK/library for running APIs created on WrapAPI (https://wrapapi.com)",
+  "main": "client.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:pxpeterxu/wrapapi.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.11.0",
+    "object-assign": "^4.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "uglify-js": "^2.6.2"
+  },
+  "scripts": {
+    "browserify": "browserify client.js > dist/wrapapi.js",
+    "uglify": "uglifyjs dist/wrapapi.js > dist/wrapapi-min.js",
+    "build": "npm run browserify && npm run uglify"
+  }
+}
