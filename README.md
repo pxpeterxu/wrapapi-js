@@ -17,25 +17,25 @@ var client = new wrapapi.Client('Your API key goes here');
 ```
 Once initialized, it's easy to send simple requests.
 ```javascript
-client.call('phsource', 'hackernews', 'login', '1.0.0', {
+client.run('phsource', 'hackernews', 'login', '1.0.0', {
   acct: 'username',
   pw: 'password'
 }).then(function(response) {
   console.log(response);
   // Will output { success: true, outputScenario: ..., data: ..., stateToken }
-  
-  return client.call('phsource', 'hackernews', 'index', 'latest', null, response.stateToken);
+
+  return client.run('phsource', 'hackernews', 'index', 'latest', null, response.stateToken);
 }).catch(function(e) { ... }).
 ```
 You can also create a session so that state tokens returned by WrapAPI are automatically used for subsequent requests:
 ```javascript
 var session = client.Session();
-session.call('phsource', 'hackernews', 'login', '1.0.0', {
+session.run('phsource', 'hackernews', 'login', '1.0.0', {
   acct: 'username',
   pw: 'password'
 }).then(function(response) {
   console.log(response);
-  return session.call('phsource', 'hackernews', 'index', 'latest');
+  return session.run('phsource', 'hackernews', 'index', 'latest');
   // The stateToken from the login call above is automatically saved and used
   // for this subsequent request, so this code does the same as the previous
   // example
@@ -45,6 +45,6 @@ session.call('phsource', 'hackernews', 'login', '1.0.0', {
 ## API
 * `var client = new wrapapi.Client(apiKey)`: instantiates a new client
 * `client`:
-  * `client.call(username, repository, name, version[, data, stateToken])`: calls a WrapAPI API element. Returns a Promise that will be passed the response data from WrapAPI.
+  * `client.run(username, repository, name, version[, data, stateToken])`: calls a WrapAPI API element. Returns a Promise that will be passed the response data from WrapAPI.
     * **Errors**: If the result from WrapAPI indicates an error, a `wrapapi.Error` will be thrown with the error details in an array of `messages` and the machine-readable error types in `errTypes`. This will happen if, for example, the API element doesn't exist, the API key is invalid, or no output scenarios matched the API element's output.
-  *  `client.Session()`: creates a session object that will keep track of stateTokens and automatically use them in subsequent requests. Sessions have the same APIs as `client`, so `client.Session().call` has the same arguments as above
+  *  `client.Session()`: creates a session object that will keep track of stateTokens and automatically use them in subsequent requests. Sessions have the same APIs as `client`, so `client.Session().run` has the same arguments as above

@@ -1,6 +1,6 @@
 {
   "name": "wrapapi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Official SDK/library for running APIs created on WrapAPI (https://wrapapi.com)",
   "main": "client.js",
   "repository": {
